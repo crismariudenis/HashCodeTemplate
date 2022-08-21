@@ -3,11 +3,11 @@ using namespace std;
 class Output
 {
 public:
+    int x;
     Output()
     {
-
     }
-    void writeToFile(){
-        
+    void writeToFile(string fileName)
+    {
     }
 };

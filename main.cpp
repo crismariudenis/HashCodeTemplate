@@ -1,13 +1,29 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #include "evaluator.h"
 
 using namespace std;
-const int nrLoops = 1;
+
+//-----------General values-----------
+const int nrLoops = 10;
+const string inputFileName = "in.txt";
+const string outputFileName = "out.txt";
+//------------------------------------
 
 Evaluator evaluator;
 Input input;
-Output output;
 
-int main(){
-    cout<<evaluator.compute(input, output);
+void solve()
+{
+    Output output;
+    /*
+     *  Generate output here
+     */
+    evaluator.compute(input, output);
+}
+
+signed main()
+{
+    // This runs the program nrLoops
+    for (int i = 1; i <= nrLoops; i++)
+        solve();
 }

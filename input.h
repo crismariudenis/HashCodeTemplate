@@ -3,10 +3,10 @@ using namespace std;
 class Input
 {
 public:
-    Input(){
-        
+    Input()
+    {
     }
-    void read(){
-        
+    void read()
+    {
     }
 };
