@@ -1,2 +1,2 @@
 # HashCodeTemplate
-C++ template for hash code
+C++ template for Hash Code
