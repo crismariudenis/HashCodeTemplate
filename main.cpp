@@ -26,4 +26,7 @@ signed main()
     // This runs the program nrLoops
     for (int i = 1; i <= nrLoops; i++)
         solve();
+
+    //Write the best output to the file
+    evaluator.bestOutput.writeToFile(outputFileName);
 }
