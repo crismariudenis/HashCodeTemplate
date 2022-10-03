@@ -1,7 +1,5 @@
-#include <bits/stdc++.h>
 #include "output.h"
 #include "input.h"
-using namespace std;
 class Evaluator
 {
 public:
@@ -25,6 +23,7 @@ public:
             score = bestScore;
             bestOutput = output;
         }
+        
     }
     long long process(Input &input, Output &output)
     {
