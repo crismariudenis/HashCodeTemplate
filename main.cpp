@@ -5,6 +5,7 @@ using namespace std;
 
 //-----------General values-----------
 const int nrLoops = 10;
+const int nrTreads = 4;
 const string inputFileName = "in.txt";
 const string outputFileName = "out.txt";
 //------------------------------------
@@ -23,10 +24,20 @@ void solve()
 
 signed main()
 {
-    // This runs the program nrLoops
-    for (int i = 1; i <= nrLoops; i++)
-        solve();
+    // Read the input
+    input.read();
 
-    //Write the best output to the file
+    // Every thread will run nrLoops times the solve function
+    vector<thread> threads(nrTreads);
+
+    for (int i = 0; i < nrLoops; i++)
+    {
+        for (int j = 0; j < nrTreads; j++)
+            threads[j] = thread(solve);
+        for (int j = 0; j < nrTreads; j++)
+            threads[j].join();
+    }
+
+    // Write the best output to the file
     evaluator.bestOutput.writeToFile(outputFileName);
 }
