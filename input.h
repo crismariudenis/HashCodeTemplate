@@ -1,3 +1,5 @@
+#include<bits/stdc++.h>
+using namespace std;
 class Input
 {
 
@@ -5,7 +7,7 @@ public:
     Input()
     {
     }
-    void read()
+    void readFromFile(string fileName)
     {
         /*
             Code here

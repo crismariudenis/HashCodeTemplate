@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 #include "evaluator.h"
-
+#include "timer.h"
 using namespace std;
 
-//-----------General values-----------
+//-----------Global values-----------
 const int nrLoops = 10;
 const int nrTreads = 4;
 const string inputFileName = "in.txt";
@@ -24,8 +24,8 @@ void solve()
 
 signed main()
 {
-    // Read the input
-    input.read();
+
+    input.readFromFile(inputFileName);
 
     // Every thread will run nrLoops times the solve function
     vector<thread> threads(nrTreads);
