@@ -1,5 +1,4 @@
 #include <chrono>
-#include <bits/stdc++.h>
 class Timer
 {
     std::string name = "Time";
@@ -22,7 +21,7 @@ public:
 
         double ms = duration * 0.001;
 
-        std::cout << name <<": "<<duration << "μs (" << ms << "ms)" << std::endl;
+        std::cout << name << ": " << duration << "μs (" << ms << "ms)" << std::endl;
     }
 
 private:

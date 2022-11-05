@@ -1,5 +1,3 @@
-#include <bits/stdc++.h>
-#include <future>
 #include "evaluator.h"
 #include "timer.h"
 
@@ -28,9 +26,8 @@ signed main()
 
     std::vector<std::future<void>> m_Futures;
 
-        for (int j = 0; j < nrLoops; j++)
-            m_Futures.push_back(std::async(std::launch::async, solve));
-    
+    for (int j = 0; j < nrLoops; j++)
+        m_Futures.push_back(std::async(std::launch::async, solve));
 
     // Write the best output to the file
     evaluator.writeToFile(outputFileName);
