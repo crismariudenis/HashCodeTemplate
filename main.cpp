@@ -1,11 +1,12 @@
 #include <bits/stdc++.h>
+#include <future>
 #include "evaluator.h"
 #include "timer.h"
+
 using namespace std;
 
 //-----------Global values-----------
-const int nrLoops = 10;
-const int nrTreads = 4;
+const int nrLoops = 100;
 const string inputFileName = "in.txt";
 const string outputFileName = "out.txt";
 //------------------------------------
@@ -21,23 +22,16 @@ void solve()
      */
     evaluator.compute(input, output);
 }
-
 signed main()
 {
-
     input.readFromFile(inputFileName);
 
-    // Every thread will run nrLoops times the solve function
-    vector<thread> threads(nrTreads);
+    std::vector<std::future<void>> m_Futures;
 
-    for (int i = 0; i < nrLoops; i++)
-    {
-        for (int j = 0; j < nrTreads; j++)
-            threads[j] = thread(solve);
-        for (int j = 0; j < nrTreads; j++)
-            threads[j].join();
-    }
+        for (int j = 0; j < nrLoops; j++)
+            m_Futures.push_back(std::async(std::launch::async, solve));
+    
 
     // Write the best output to the file
-    evaluator.bestOutput.writeToFile(outputFileName);
+    evaluator.writeToFile(outputFileName);
 }

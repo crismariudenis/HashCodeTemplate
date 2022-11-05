@@ -1,13 +1,14 @@
 #include <chrono>
-#include <iostream>
+#include <bits/stdc++.h>
 class Timer
 {
+    std::string name = "Time";
 
 public:
-    Timer()
-    {
-        startTime = std::chrono::high_resolution_clock::now();
-    };
+    Timer(string name) : name(name) { startTime = std::chrono::high_resolution_clock::now(); }
+
+    Timer() { startTime = std::chrono::high_resolution_clock::now(); }
+
     ~Timer() { Stop(); }
 
     void Stop()
@@ -21,7 +22,7 @@ public:
 
         double ms = duration * 0.001;
 
-        std::cout << duration << "μs (" << ms << "ms)" << std::endl;
+        std::cout << name <<": "<<duration << "μs (" << ms << "ms)" << std::endl;
     }
 
 private:

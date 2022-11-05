@@ -1,35 +1,40 @@
 #include "output.h"
 #include "input.h"
+
 class Evaluator
 {
-public:
+
+    std::mutex s_Evaluator;
     Output bestOutput;
     long long bestScore = 0;
-    Evaluator()
-    {
-    }
-    /**
-     * @brief Calls the process for getting the score and updates the best values
-     *
-     * @param input the input of the problem
-     * @param output the output generated
-     */
+
+public:
+    Evaluator() {}
+
     void compute(Input &input, Output &output)
     {
         long long score = process(input, output);
 
         if (score > bestScore)
         {
-            score = bestScore;
+            std::lock_guard<std::mutex> lock(s_Evaluator);
+            bestScore = score;
             bestOutput = output;
         }
-        
     }
-    long long process(Input &input, Output &output)
+
+private:
+    int64_t process(Input &input, Output &output)
     {
         /*
             Code here
         */
-        return 69;
+        return 0b1000101;
+    }
+
+public:
+    void writeToFile(string fileName)
+    {
+        bestOutput.writeToFile(fileName);
     }
 };
