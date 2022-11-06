@@ -26,7 +26,7 @@ signed main()
 
     std::vector<std::future<void>> m_Futures;
 
-    for (int j = 0; j < nrLoops; j++)
+    for (int i = 0; i < nrLoops; i++)
         m_Futures.push_back(std::async(std::launch::async, solve));
 
     // Write the best output to the file
