@@ -1,10 +1,9 @@
 #include <chrono>
 class Timer
 {
-    std::string name = "Time";
 
 public:
-    Timer(string name) : name(name) { startTime = std::chrono::high_resolution_clock::now(); }
+    Timer(std::string name) : name(name) { startTime = std::chrono::high_resolution_clock::now(); }
 
     Timer() { startTime = std::chrono::high_resolution_clock::now(); }
 
@@ -26,4 +25,6 @@ public:
 
 private:
     std::chrono::time_point<std::chrono::high_resolution_clock> startTime;
+
+    std::string name = "Time";
 };
