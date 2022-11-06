@@ -3,9 +3,7 @@ class Timer
 {
 
 public:
-    Timer(std::string name) : name(name) { startTime = std::chrono::high_resolution_clock::now(); }
-
-    Timer() { startTime = std::chrono::high_resolution_clock::now(); }
+    Timer(std::string name="Time") : name(name) { startTime = std::chrono::high_resolution_clock::now(); }
 
     ~Timer() { Stop(); }
 
