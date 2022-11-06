@@ -18,7 +18,7 @@ public:
 
         double ms = duration * 0.001;
 
-        std::cout << name << ": " << duration << "μs (" << ms << "ms)" << std::endl;
+        std::cout << name << ": " << duration << "us (" << ms << "ms)" << std::endl;
     }
 
 private:
