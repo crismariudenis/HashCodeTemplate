@@ -24,8 +24,7 @@ public:
     }
 
 private:
-    int64_t process(Input &input, Output &output);
-    
+    long long process(Input &input, Output &output);
 
 public:
     void writeToFile(string fileName)

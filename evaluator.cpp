@@ -1,5 +1,5 @@
 #include <evaluator.h>
-int64_t Evaluator::process(Input &input, Output &output)
+long long Evaluator::process(Input &input, Output &output)
 {
     /*
         Code here
