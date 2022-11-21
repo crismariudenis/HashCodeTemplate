@@ -22,12 +22,15 @@ void solve()
 }
 signed main()
 {
+    Timer t{"test"};
+
+
     input.readFromFile(inputFileName);
 
-    std::vector<std::future<void>> m_Futures;
+    std::vector<std::future<void>> futures;
 
     for (int i = 0; i < nrLoops; i++)
-        m_Futures.push_back(std::async(std::launch::async, solve));
+        futures.push_back(std::async(std::launch::async, solve));
 
     // Write the best output to the file
     evaluator.writeToFile(outputFileName);

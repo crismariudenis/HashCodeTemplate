@@ -5,8 +5,8 @@ class Evaluator
 {
 
     std::mutex s_Evaluator;
-    Output bestOutput;
-    long long bestScore = 0;
+    Output _bestOutput;
+    long long _bestScore = 0;
 
 public:
     Evaluator() {}
@@ -15,26 +15,21 @@ public:
     {
         long long score = process(input, output);
 
-        if (score > bestScore)
+        if (score > _bestScore)
         {
             std::lock_guard<std::mutex> lock(s_Evaluator);
-            bestScore = score;
-            bestOutput = output;
+            _bestScore = score;
+            _bestOutput = output;
         }
     }
 
 private:
-    int64_t process(Input &input, Output &output)
-    {
-        /*
-            Code here
-        */
-        return 0b1000101;
-    }
+    int64_t process(Input &input, Output &output);
+    
 
 public:
     void writeToFile(string fileName)
     {
-        bestOutput.writeToFile(fileName);
+        _bestOutput.writeToFile(fileName);
     }
 };

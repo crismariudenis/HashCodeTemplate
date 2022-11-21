@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 class Input
 {
@@ -7,10 +7,5 @@ public:
     Input()
     {
     }
-    void readFromFile(string fileName)
-    {
-        /*
-            Code here
-        */
-    }
+    void readFromFile(string fileName);
 };
