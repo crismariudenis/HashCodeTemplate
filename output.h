@@ -1,13 +1,10 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 class Output
 {
 public:
-    Output()
-    {
-    }
+    Output() {}
 
-    
     void generateOutput();
 
     void writeToFile(string fileName);

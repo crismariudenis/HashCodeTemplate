@@ -4,8 +4,7 @@ class Input
 {
 
 public:
-    Input()
-    {
-    }
+    Input() {}
+
     void readFromFile(string fileName);
 };

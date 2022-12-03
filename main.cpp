@@ -22,8 +22,6 @@ void solve()
 }
 signed main()
 {
-    Timer t{"test"};
-
 
     input.readFromFile(inputFileName);
 
