@@ -2,9 +2,6 @@
 using namespace std;
 class Input
 {
-
 public:
-    Input() {}
-
-    void readFromFile(string fileName);
+        void readFromFile(string fileName);
 };

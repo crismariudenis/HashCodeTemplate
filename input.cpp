@@ -1,4 +1,4 @@
-#include <input.h>
+#include "input.h"
 
 void Input::readFromFile(string fileName)
 {

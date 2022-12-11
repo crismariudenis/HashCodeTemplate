@@ -1,12 +1,15 @@
 #include "evaluator.h"
-#include "timer.h"
+#include "utils/timer.h"
 
 using namespace std;
 
+void singleThread();
+void multiThread();
+
 //-----------Global values-----------
 const int nrLoops = 100;
-const string inputFileName = "in.txt";
-const string outputFileName = "out.txt";
+const string inputFile = "in.txt";
+const string outputFile = "out.txt";
 //------------------------------------
 
 Evaluator evaluator;
@@ -15,21 +18,24 @@ Input input;
 void solve()
 {
     Output output;
-    /*
-     *  Generate output here
-     */
     evaluator.compute(input, output);
 }
-signed main()
+
+int main()
 {
-
-    input.readFromFile(inputFileName);
-
+    input.readFromFile(inputFile);
+    singleThread();
+    evaluator.writeToFile(outputFile);
+}
+void multiThread()
+{
     std::vector<std::future<void>> futures;
 
-    for (int i = 0; i < nrLoops; i++)
+    for (int i = 1; i <= nrLoops; i++)
         futures.push_back(std::async(std::launch::async, solve));
-
-    // Write the best output to the file
-    evaluator.writeToFile(outputFileName);
+}
+void singleThread()
+{
+    for (int i = 1; i <= nrLoops; i++)
+        solve();
 }

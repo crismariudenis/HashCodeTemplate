@@ -4,13 +4,7 @@
 class Evaluator
 {
 
-    std::mutex s_Evaluator;
-    Output _bestOutput;
-    long long _bestScore = 0;
-
 public:
-    Evaluator() {}
-
     void compute(Input &input, Output &output)
     {
         long long score = process(input, output);
@@ -23,12 +17,16 @@ public:
         }
     }
 
-private:
-    long long process(Input &input, Output &output);
-
-public:
     void writeToFile(string fileName)
     {
         _bestOutput.writeToFile(fileName);
     }
+
+private:
+    long long process(Input &input, Output &output);
+
+private:
+    std::mutex s_Evaluator;
+    Output _bestOutput;
+    long long _bestScore = 0;
 };

@@ -3,7 +3,7 @@ using namespace std;
 class Output
 {
 public:
-    Output() {}
+    Output() { generateOutput(); }
 
     void generateOutput();
 
