@@ -1,7 +1,6 @@
 #include "evaluator.h"
 #include "utils/timer.h"
 
-using namespace std;
 
 void singleThread();
 void multiThread();

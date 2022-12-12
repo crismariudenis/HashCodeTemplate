@@ -17,7 +17,7 @@ public:
         }
     }
 
-    void writeToFile(string fileName)
+    void writeToFile(std::string fileName)
     {
         _bestOutput.writeToFile(fileName);
     }

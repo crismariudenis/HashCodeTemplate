@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include <iostream>
+
 class Output
 {
 public:
@@ -7,5 +7,5 @@ public:
 
     void generateOutput();
 
-    void writeToFile(string fileName);
+    void writeToFile(std::string fileName);
 };
