@@ -1,32 +1,38 @@
-#include "output.h"
 #include "input.h"
+#include "output.h"
 
 class Evaluator
 {
-
 public:
+    Evaluator(Output &output) : _bestOutput(output)
+    {
+        // Todo: read the previous best score from the file
+    }
     void compute(Input &input, Output &output)
     {
         long long score = process(input, output);
-
-        if (score > _bestScore)
+        assert(score >= 0);
+        if (score > _bestCurrentScore)
         {
-            std::lock_guard<std::mutex> lock(s_Evaluator);
-            _bestScore = score;
+            _bestCurrentScore = score;
             _bestOutput = output;
         }
     }
 
-    void writeToFile(std::string fileName)
+    void write(std::string fileName)
     {
-        _bestOutput.writeToFile(fileName);
+        if (_bestCurrentScore > _bestGlobalScore)
+        {
+            // Todo: write the best score to the file
+            _bestOutput.write(fileName);
+        }
     }
 
 private:
     long long process(Input &input, Output &output);
 
 private:
-    std::mutex s_Evaluator;
-    Output _bestOutput;
-    long long _bestScore = 0;
+    Output &_bestOutput;
+    long long _bestCurrentScore;
+    long long _bestGlobalScore;
 };

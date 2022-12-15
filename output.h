@@ -7,5 +7,8 @@ public:
 
     void generateOutput();
 
-    void writeToFile(std::string fileName);
+    void write(std::string fileName);
+
+    // read the previous output from the file
+    void read(std::string fileName);
 };

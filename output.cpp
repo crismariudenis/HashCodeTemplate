@@ -5,7 +5,13 @@ void Output::generateOutput()
         Code here
     */
 }
-void Output::writeToFile(std::string fileName)
+void Output::write(std::string fileName)
+{
+    /*
+        Code here
+    */
+}
+void Output::read(std::string fileName)
 {
     /*
         Code here

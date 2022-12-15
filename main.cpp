@@ -1,40 +1,30 @@
 #include "evaluator.h"
 #include "utils/timer.h"
+#include "utils/config.h"
 
-
-void singleThread();
-void multiThread();
-
-//-----------Global values-----------
-const int nrLoops = 100;
-const string inputFile = "in.txt";
-const string outputFile = "out.txt";
-//------------------------------------
-
-Evaluator evaluator;
 Input input;
+vector<Output> outputs;
+Evaluator evaluator;
 
-void solve()
+void solve(Output &output)
 {
-    Output output;
     evaluator.compute(input, output);
 }
 
 int main()
 {
-    input.readFromFile(inputFile);
-    singleThread();
-    evaluator.writeToFile(outputFile);
-}
-void multiThread()
-{
-    std::vector<std::future<void>> futures;
+    input.read(inputFile);
 
-    for (int i = 1; i <= nrLoops; i++)
-        futures.push_back(std::async(std::launch::async, solve));
-}
-void singleThread()
-{
-    for (int i = 1; i <= nrLoops; i++)
-        solve();
+    // generate the initial outputs
+
+    //Todo: initialize the outputs by using the input
+     
+    for (int i = 0; i < nrOutputs; i++)
+        outputs.emplace_back(Output{});
+
+      
+    for (int i = 0; i < nrLoops; i++)
+        solve(outputs[i]);
+
+    evaluator.write(outputFile);
 }
