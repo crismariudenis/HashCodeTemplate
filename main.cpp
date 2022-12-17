@@ -17,12 +17,11 @@ int main()
 
     // generate the initial outputs
 
-    //Todo: initialize the outputs by using the input
-     
+    // Todo: initialize the outputs by using the input
+
     for (int i = 0; i < nrOutputs; i++)
         outputs.emplace_back(Output{});
 
-      
     for (int i = 0; i < nrLoops; i++)
         solve(outputs[i]);
 

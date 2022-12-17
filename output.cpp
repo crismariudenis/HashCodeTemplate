@@ -1,4 +1,6 @@
 #include "output.h"
+#include "input.h"
+
 void Output::generateOutput()
 {
     /*

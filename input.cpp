@@ -1,6 +1,6 @@
 #include "input.h"
 
-void Input::readFromFile(std::string fileName)
+void Input::read(std::string fileName)
 {
     /*
         Code here
