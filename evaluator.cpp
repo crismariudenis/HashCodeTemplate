@@ -1,7 +1,10 @@
 #include "evaluator.h"
-#include "output.h"
 
-Evaluator::Evaluator(Output &output) : _bestOutput(output)
+Evaluator::Evaluator(){
+
+}
+
+Evaluator::Evaluator(Output output) : _bestOutput(output)
 {
     ifstream fin("utils/bestScore.txt");
     int score;

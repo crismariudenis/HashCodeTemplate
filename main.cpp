@@ -4,12 +4,11 @@
 
 Input input;
 vector<Output> outputs;
-Evaluator evaluator;
 
-void solve(Output &output)
-{
-    evaluator.compute(input, output);
-}
+// void solve(Output &output)
+// {
+//     evaluator.compute(input, output);
+// }
 
 int main()
 {
@@ -22,8 +21,10 @@ int main()
     for (int i = 0; i < nrOutputs; i++)
         outputs.emplace_back(Output{});
 
-    for (int i = 0; i < nrLoops; i++)
-        solve(outputs[i]);
+    Evaluator evaluator(outputs[1]);
+
+    // for (int i = 0; i < nrLoops; i++)
+    //     solve(outputs[i]);
 
     evaluator.write(outputFile);
 }

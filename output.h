@@ -1,3 +1,5 @@
+#include "input.h"
+
 class Output
 {
 public:
