@@ -1,20 +1,16 @@
 #include "evaluator.h"
 
-Evaluator::Evaluator(){
-
-}
-
-Evaluator::Evaluator(Output output) : _bestOutput(output)
+Evaluator::Evaluator()
 {
     ifstream fin("utils/bestScore.txt");
     int score;
     fin >> score;
     _bestGlobalScore = score;
     _bestCurrentScore = 0;
-    std::cout << _bestGlobalScore << '\n';
+    // std::cout << _bestGlobalScore << '\n';
 }
 
-long long Evaluator::process(Input &input, Output &output)
+long long Evaluator::process(Input &input, Output *output)
 {
     /*
         Code here
@@ -27,10 +23,10 @@ void Evaluator::write(std::string fileName)
     {
         ofstream fout("utils/bestScore.txt");
         fout << _bestCurrentScore;
-        _bestOutput.write(fileName);
+        _bestOutput->write(fileName);
     }
 }
-void Evaluator::compute(Input &input, Output &output)
+void Evaluator::compute(Input &input, Output *output)
 {
     long long score = process(input, output);
     assert(score >= 0);

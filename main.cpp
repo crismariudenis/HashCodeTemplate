@@ -3,28 +3,23 @@
 #include "utils/config.h"
 
 Input input;
-vector<Output> outputs;
+vector<Output *> outputs;
 
-// void solve(Output &output)
-// {
-//     evaluator.compute(input, output);
-// }
+void solve(Output *output, Evaluator &evaluator)
+{
+    evaluator.compute(input, output);
+}
 
 int main()
 {
     input.read(inputFile);
 
-    // generate the initial outputs
+    outputs.resize(nrOutputs);
 
-    // Todo: initialize the outputs by using the input
+    Evaluator evaluator;
 
-    for (int i = 0; i < nrOutputs; i++)
-        outputs.emplace_back(Output{});
-
-    Evaluator evaluator(outputs[1]);
-
-    // for (int i = 0; i < nrLoops; i++)
-    //     solve(outputs[i]);
+    for (int i = 0; i < nrLoops; i++)
+        solve(outputs[i], evaluator);
 
     evaluator.write(outputFile);
 }
