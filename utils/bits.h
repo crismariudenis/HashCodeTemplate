@@ -119,4 +119,4 @@ using namespace std;
 #include <unordered_set>
 #endif
 
-/*This is only for Ciornei*/
+/*This is only for Ciornei and Langa*/

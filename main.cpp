@@ -27,7 +27,7 @@ int main()
 
         input.read(inputFile[test]);
 
-        outputs.resize(nrOutputs);
+        outputs.resize(nrOutputs); /// generating the outputs
 
         Evaluator evaluator(bestScoreFile[test]);
 
