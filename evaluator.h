@@ -3,7 +3,7 @@
 class Evaluator
 {
 public:
-    Evaluator();
+    Evaluator(string fileName);
     void compute(Input &input, Output *output);
     void write(std::string fileName);
 
@@ -14,4 +14,5 @@ private:
     Output *_bestOutput = nullptr;
     long long _bestCurrentScore;
     long long _bestGlobalScore;
+    string bestScorePath;
 };

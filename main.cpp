@@ -2,24 +2,38 @@
 #include "utils/timer.h"
 #include "utils/config.h"
 
-Input input;
 vector<Output *> outputs;
 
-void solve(Output *output, Evaluator &evaluator)
+void solve(Output *output, Evaluator &evaluator, Input &input)
 {
     evaluator.compute(input, output);
 }
 
 int main()
 {
-    input.read(inputFile);
+    for (int index = 0; index < 6; ++index)
+    {
+        ifstream fin(bestScoreFile[index]);
+        if (isEmpty(fin))
+        {
+            ofstream fout(bestScoreFile[index]);
+            fout << 0;
+        }
+    }
 
-    outputs.resize(nrOutputs);
+    for (int test = 0; test < 6; ++test)
+    {
+        Input input;
 
-    Evaluator evaluator;
+        input.read(inputFile[test]);
 
-    for (int i = 0; i < nrLoops; i++)
-        solve(outputs[i], evaluator);
+        outputs.resize(nrOutputs);
 
-    evaluator.write(outputFile);
+        Evaluator evaluator(bestScoreFile[test]);
+
+        for (int i = 0; i < nrOutputs; i++)
+            solve(outputs[i], evaluator, input);
+
+        evaluator.write(outputFile[test]);
+    }
 }
