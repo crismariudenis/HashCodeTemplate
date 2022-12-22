@@ -23,7 +23,7 @@ void Evaluator::write(std::string fileName)
         ofstream fout(bestScorePath);
         fout << _bestCurrentScore;
         _bestOutput->write(fileName);
-        std::cout << "Better output detected for test " << (char)(std::toupper(bestScorePath[17])) << '!' << '\n';
+        std::cout << "New best output for test " << (char)(std::toupper(bestScorePath[17])) << '!' << '\n';
     }
 }
 void Evaluator::compute(Input &input, Output *output)
