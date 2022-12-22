@@ -26,5 +26,5 @@ bool isEmpty(ifstream &fin)
 {
     std::string str;
     getline(fin, str);
-    return str.size() == 0;
+    return str.empty();
 }
