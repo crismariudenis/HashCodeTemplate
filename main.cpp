@@ -2,9 +2,9 @@
 #include "utils/timer.h"
 #include "utils/config.h"
 
-vector<Output > outputs;
+vector<Output> outputs;
 
-void solve(Output output, Evaluator &evaluator, Input &input)
+void solve(Output* output, Evaluator &evaluator, Input &input)
 {
     evaluator.compute(input, output);
 }
@@ -27,12 +27,14 @@ int main()
 
         input.read(inputFile[test]);
 
+        outputs.clear();
         outputs.resize(nrOutputs); /// generating the outputs
 
         Evaluator evaluator(bestScoreFile[test]);
 
+
         for (int i = 0; i < nrOutputs; i++)
-            solve(outputs[i], evaluator, input);
+            solve(&outputs[i], evaluator, input);
 
         evaluator.write(outputFile[test]);
     }
