@@ -28,7 +28,4 @@ void Input::read(std::string fileName)
         }
     }
 
-    for(auto c:ingredients){
-        cout << c << " ";
-    }
 }
