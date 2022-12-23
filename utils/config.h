@@ -28,3 +28,10 @@ bool isEmpty(ifstream &fin)
     getline(fin, str);
     return str.empty();
 }
+
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+int rand(int a, int b)
+{
+    int ans = uniform_int_distribution<int>(a, b)(rng);
+    return ans;
+}
