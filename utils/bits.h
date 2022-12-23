@@ -97,7 +97,7 @@ using namespace std;
 #include <valarray>
 #include <vector>
 
-#if __cplusplus >= 201103L
+
 #include <array>
 #include <atomic>
 #include <chrono>
@@ -117,6 +117,6 @@ using namespace std;
 #include <type_traits>
 #include <unordered_map>
 #include <unordered_set>
-#endif
+
 
 /*This is only for Ciornei and Langa*/
