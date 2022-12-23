@@ -9,9 +9,10 @@ Evaluator::Evaluator(string fileName)
     // std::cout << _bestGlobalScore << '\n';
 }
 
-long long Evaluator::process(Input &input, Output* output)
+long long Evaluator::process(Input &input, Output *output)
 {
     long long ans = 0;
+    int index = 0;
     for (auto client : input.clients)
     {
         long long ok = 1;
@@ -19,15 +20,23 @@ long long Evaluator::process(Input &input, Output* output)
         for (auto ingredient : output->answer)
         {
             if (client.dislikes[ingredient])
+            {
                 ok = 0;
+                break;
+            }
         }
 
         for (auto likedIngredient : client.likes)
         {
             if (!output->answer.count(likedIngredient.first))
+            {
                 ok = 0;
+                break;
+            }
         }
+
         ans += ok;
+        index++;
     }
 
     return ans;
@@ -42,13 +51,13 @@ void Evaluator::write(std::string fileName)
         std::cout << "New best output for test " << (char)(std::toupper(bestScorePath[bestScorePath.size() - 5])) << '!' << '\n';
     }
 }
-void Evaluator::compute(Input &input, Output* output)
+void Evaluator::compute(Input &input, Output *output)
 {
     long long score = process(input, output);
     assert(score >= 0);
     if (score > _bestCurrentScore)
     {
         _bestCurrentScore = score;
-        // _bestOutput = output;
+        _bestOutput = output;
     }
 }

@@ -3,12 +3,13 @@
 class Output
 {
 public:
-    set<string> answer ;
+    Input input;
+    std::set<string> answer ;
+    std::string outputFile;
 
-    Output()
-    {
-        generateOutput();
-    }
+    void setInput(Input input);
+
+    void setOutputFile(string outputFIle);
 
     void generateOutput();
 
