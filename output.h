@@ -3,7 +3,12 @@
 class Output
 {
 public:
-    Output() { generateOutput(); }
+    set<string> answer ;
+
+    Output()
+    {
+        generateOutput();
+    }
 
     void generateOutput();
 

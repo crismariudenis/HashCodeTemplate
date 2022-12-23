@@ -4,11 +4,11 @@ class Evaluator
 {
 public:
     Evaluator(string fileName);
-    void compute(Input &input, Output *output);
+    void compute(Input &input, Output output);
     void write(std::string fileName);
 
 private:
-    long long process(Input &input, Output *output);
+    long long process(Input &input, Output output);
 
 private:
     Output *_bestOutput = nullptr;

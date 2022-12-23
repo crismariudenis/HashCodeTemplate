@@ -9,10 +9,11 @@ struct Client
 
 class Input
 {
+
+public:
     vector<Client> clients;
     set<string> ingredients;
 
-public:
     void read(string fileName);
     /*
         More functions wiil appear depending on the problem

@@ -2,9 +2,9 @@
 #include "utils/timer.h"
 #include "utils/config.h"
 
-vector<Output *> outputs;
+vector<Output > outputs;
 
-void solve(Output *output, Evaluator &evaluator, Input &input)
+void solve(Output output, Evaluator &evaluator, Input &input)
 {
     evaluator.compute(input, output);
 }

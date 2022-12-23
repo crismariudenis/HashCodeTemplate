@@ -26,6 +26,6 @@ void Input::read(std::string fileName)
             client.dislikes[ingredient] = 1;
             ingredients.insert(ingredient);
         }
+        clients[i] = client;
     }
-
 }
