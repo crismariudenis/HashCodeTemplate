@@ -21,9 +21,11 @@ int main()
         }
     }
 
-    for (int test = 0; test < 1; ++test)
+    for (int test = 0; test < 5; ++test)
     {
+        std::cout<<"Test "<<char('A'+test)<<" started!\n";
         Input input;
+
 
         input.read(inputFile[test]);
 
