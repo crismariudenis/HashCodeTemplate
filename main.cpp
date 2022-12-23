@@ -21,7 +21,7 @@ int main()
         }
     }
 
-    for (int test = 0; test < 6; ++test)
+    for (int test = 0; test < 1; ++test)
     {
         Input input;
 
