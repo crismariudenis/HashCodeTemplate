@@ -1,5 +1,5 @@
 #include "output.h"
-
+#include "utils/timer.h"
 struct element
 {
     int likes, dislikes;
@@ -9,11 +9,16 @@ struct element
 
 bool cmp(element a, element b)
 {
-    return a.raport < b.raport;
+    if (a.raport != b.raport)
+        return a.raport < b.raport;
+    if (a.likes != b.likes)
+        return a.likes < b.likes;
+    return a.dislikes > b.dislikes;
 }
 
 void Output::generateOutput()
 {
+    Timer timer{"generateOutput"};
     std::vector<Client> clients = input.clients;
     std::vector<element> precIngredients;
     std::set<string> ingredients = input.ingredients;
@@ -26,31 +31,41 @@ void Output::generateOutput()
             dislikes[i] += clients[j].dislikes[i];
         }
     }
+    map<string, bool> banList;
     for (auto i : ingredients)
     {
+        if (dislikes[i] > likes[i])
+        {
+            banList[i] = 1;
+            continue;
+        }
         // std::cout << likes[i] << ' ' << dislikes[i] << '\n';
         int r = dislikes[i];
         if (!r)
-            r = 1;
+        {
+            precIngredients.push_back({likes[i], dislikes[i], i, 1e9});
+            continue;
+        }
         double raport = (double)(likes[i]) / (double)(r);
         precIngredients.push_back({likes[i], dislikes[i], i, raport});
     }
-    map<string, bool> banList;
+
     map<int, bool> civilianBanList;
+
     int cnt = 0;
     while (1)
     {
-
+        if (precIngredients.size() == 0)
+            break;
         cnt++;
-        cout<<precIngredients.size()<<endl;
+        // cout << precIngredients.size() << endl;
         sort(precIngredients.begin(), precIngredients.end(), cmp);
-  
+        //     for(int i = 0;i < precIngredients.size(); ++i)
+        //     cout << setprecision(2) << fixed << precIngredients[i].raport << ' ';
+        // cout << '\n';
         if (precIngredients[precIngredients.size() - 1].raport == 0)
             break;
 
-        answer.insert(precIngredients.back().ingredient);
-        if (precIngredients.size() == 1)
-            break;
         std::set<int> badClients;
 
         element currentBest = precIngredients.back();
@@ -67,16 +82,17 @@ void Output::generateOutput()
                 badClients.insert(i), nr[i] = civilianBanList[i] = 1;
         }
         // cout << currIngr << ' ' << currentBest.raport << '\n';
-        for (auto i : badClients)
+        bool ok = 1;
+        if (badClients.size() >= likes[currIngr])
+            banList[currIngr] = 1;
+        else
         {
-            for (auto j : clients[i].likes)
+            answer.insert(currIngr);
+            for (auto i : badClients)
             {
-                if (j.first == currIngr)
+                for (auto j : clients[i].likes)
                     likes[j.first]--;
-            }
-            for (auto j : clients[i].dislikes)
-            {
-                if (j.first == currIngr)
+                for (auto j : clients[i].dislikes)
                     dislikes[j.first]--;
             }
         }
@@ -84,15 +100,21 @@ void Output::generateOutput()
         {
             if (banList[i])
                 continue;
+            if (dislikes[i] > likes[i])
+            {
+                banList[i] = 1;
+                continue;
+            }
             int r = dislikes[i];
             if (!r)
-                r = 1;
+            {
+                precIngredients.push_back({likes[i], dislikes[i], i, 1e9});
+                continue;
+            }
             double raport = (double)(likes[i]) / (double)(r);
             precIngredients.push_back({likes[i], dislikes[i], i, raport});
         }
     }
-
-    this->write(outputFile);
 }
 void Output::write(std::string fileName)
 {

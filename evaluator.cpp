@@ -1,16 +1,16 @@
 #include "evaluator.h"
-
+#include "utils/timer.h"
 Evaluator::Evaluator(string fileName)
 {
     ifstream fin(fileName);
     fin >> _bestGlobalScore;
     _bestCurrentScore = 0;
     bestScorePath = fileName;
-    // std::cout << _bestGlobalScore << '\n';
 }
 
 long long Evaluator::process(Input &input, Output *output)
 {
+    Timer timer{"process"};
     long long ans = 0;
     int index = 0;
     for (auto client : input.clients)
@@ -48,7 +48,7 @@ void Evaluator::write(std::string fileName)
         ofstream fout(bestScorePath);
         fout << _bestCurrentScore;
         _bestOutput->write(fileName);
-        std::cout << "New best output for test " << (char)(std::toupper(bestScorePath[bestScorePath.size() - 5])) << '!' << '\n';
+        std::cout << "New best output for test " << (char)(std::toupper(bestScorePath[bestScorePath.size() - 5])) << '!' << endl;
     }
 }
 void Evaluator::compute(Input &input, Output *output)
