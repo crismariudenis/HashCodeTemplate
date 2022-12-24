@@ -1,7 +1,16 @@
 #include "output.h"
+#include "utils/timer.h"
+
+
+Output::Output(Input input)
+{
+    this->input = input;
+    generateOutput();
+}
 
 void Output::generateOutput()
 {
+    Timer timer{"generateOutput"};
     /*
         Code here
     */

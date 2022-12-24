@@ -2,7 +2,7 @@
 #include "utils/timer.h"
 #include "utils/config.h"
 
-vector<Output *> outputs;
+vector<Output> outputs;
 
 void solve(Output *output, Evaluator &evaluator, Input &input)
 {
@@ -23,16 +23,25 @@ int main()
 
     for (int test = 0; test < 6; ++test)
     {
+        cout << "\n\n";
+        std::cout << "Test " << char('A' + test) << " started!\n";
+        Timer timer;
+
         Input input;
 
         input.read(inputFile[test]);
 
-        outputs.resize(nrOutputs); /// generating the outputs
+        outputs.clear();
 
         Evaluator evaluator(bestScoreFile[test]);
 
-        for (int i = 0; i < nrOutputs; i++)
-            solve(outputs[i], evaluator, input);
+        for (int i = 0; i < nrOutputs; ++i){
+            cout << i + 1 << " iteration\n";
+            outputs.push_back(Output(input));
+            solve(&outputs[i], evaluator, input);    
+            cout << "\n";
+        }  
+        
 
         evaluator.write(outputFile[test]);
     }

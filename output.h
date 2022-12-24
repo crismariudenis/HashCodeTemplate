@@ -3,7 +3,8 @@
 class Output
 {
 public:
-    Output() { generateOutput(); }
+    Input input;
+    Output(Input input);
 
     void generateOutput();
 

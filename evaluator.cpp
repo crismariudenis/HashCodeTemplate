@@ -1,4 +1,5 @@
 #include "evaluator.h"
+#include "utils/timer.h"
 
 Evaluator::Evaluator(string fileName)
 {
@@ -11,6 +12,7 @@ Evaluator::Evaluator(string fileName)
 
 long long Evaluator::process(Input &input, Output *output)
 {
+    Timer timer{"process"};
     /*
         Code here
     */
@@ -24,6 +26,7 @@ void Evaluator::write(std::string fileName)
         fout << _bestCurrentScore;
         _bestOutput->write(fileName);
         std::cout << "New best output for test " << (char)(std::toupper(bestScorePath[bestScorePath.size()-5])) << '!' << '\n';
+
     }
 }
 void Evaluator::compute(Input &input, Output *output)
