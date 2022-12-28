@@ -4,7 +4,7 @@ class Output
 {
 public:
     Input input;
-    Output(Input input, std::ofstream &f);
+    Output(Input input, std::ofstream &fout);
 
     void generateOutput();
 
@@ -13,5 +13,5 @@ public:
     // read the previous output from the file
     void read(std::string fileName);
 
-    std::ofstream &f;
+    std::ofstream &fout;
 };

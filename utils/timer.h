@@ -5,7 +5,7 @@ class Timer
 {
 
 public:
-    Timer(std::ofstream &f, std::string name = "Time") : f(f), name(name) { startTime = std::chrono::high_resolution_clock::now(); }
+    Timer(std::ofstream &fout, std::string name = "Time") : fout(fout), name(name) { startTime = std::chrono::high_resolution_clock::now(); }
 
     ~Timer() { Stop(); }
 
@@ -20,7 +20,7 @@ public:
 
         double s = duration * 0.001;
 
-        f << name << ": " << duration << "ms (" << s << "s)" << std::endl;
+        fout << name << ": " << duration << "ms (" << s << "s)" << std::endl;
     }
 
 private:
@@ -28,5 +28,5 @@ private:
 
     std::string name = "Time";
 
-    std::ofstream &f;
+    std::ofstream &fout;
 };

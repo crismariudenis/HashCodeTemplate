@@ -1,6 +1,6 @@
 #include "evaluator.h"
 #include "utils/timer.h"
-Evaluator::Evaluator(string fileName, std::ofstream &f):bestScorePath(fileName),_bestCurrentScore(0), f(f)
+Evaluator::Evaluator(string fileName, std::ofstream &fout):bestScorePath(fileName),_bestCurrentScore(0), fout(fout)
 {
     ifstream fin(fileName);
     fin >> _bestGlobalScore;
@@ -8,7 +8,7 @@ Evaluator::Evaluator(string fileName, std::ofstream &f):bestScorePath(fileName),
 
 long long Evaluator::process(Input &input, Output *output)
 {
-    Timer timer{f, "process"};
+    Timer timer{fout, "process"};
     /*
         Code here
     */

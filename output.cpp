@@ -1,7 +1,7 @@
 #include "output.h"
 #include "utils/timer.h"
 
-Output::Output(Input input, std::ofstream &f) : f(f) 
+Output::Output(Input input, std::ofstream &fout) : fout(fout) 
 {
     this->input = input;
     generateOutput();
@@ -9,7 +9,7 @@ Output::Output(Input input, std::ofstream &f) : f(f)
 
 void Output::generateOutput()
 {   
-    Timer timer{f, "generateOutput"};
+    Timer timer{fout, "generateOutput"};
     /*
         Code here
     */
