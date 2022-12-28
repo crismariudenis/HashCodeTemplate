@@ -16,11 +16,14 @@ int main()
         }
     }
 
+    ofstream fout ("utils/logs.txt");
+
     for (int test = 0; test < 6; ++test)
     {
-        cout << "\n\n";
+        fout << "\n";
         std::cout << "Test " << char('A' + test) << " started!\n";
-        Timer timer{"Total"};
+        fout << "Test " << char('A' + test) << " started!\n\n";
+        Timer timer(fout, "Total");
 
         Input input;
 
@@ -28,14 +31,15 @@ int main()
 
         outputs.clear();
 
-        Evaluator evaluator(bestScoreFile[test]);
+        Evaluator evaluator(bestScoreFile[test], fout);
 
         for (int i = 0; i < nrOutputs; ++i)
         {
-            cout << i + 1 << " iteration\n";
-            outputs.push_back(Output(input));
+
+            fout << i + 1 << " iteration\n";
+            outputs.push_back(Output(input, fout));
             evaluator.compute(input, &outputs[i]);
-            cout << "\n";
+            fout << "\n";
         }
 
         evaluator.write(outputFile[test]);
