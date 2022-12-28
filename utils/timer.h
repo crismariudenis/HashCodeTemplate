@@ -18,9 +18,9 @@ public:
 
         auto duration = end - start;
 
-        double min=duration/60;
+        double m=duration/60;
 
-        fout << name << ": " << duration << "s (" << min << "min)" << std::endl;
+        fout << name << ": " << duration << "s (" << m << "m)" << std::endl;
     }
 
 private:
