@@ -21,7 +21,8 @@ void Evaluator::write(std::string fileName)
         ofstream fout(bestScorePath);
         fout << _bestCurrentScore;
         _bestOutput->write(fileName);
-        std::cout << "\033[1;31mNew best output for test " << (char)(std::toupper(bestScorePath[bestScorePath.size() - 5])) << '!' << "\n\033[0m";
+        char test = std::toupper(bestScorePath[bestScorePath.size() - 5]);
+        std::cout << "\033[1;31mNew best for test " << test <<" ("<<_bestCurrentScore<< " pts)!" << "\n\033[0m";
     }
 }
 void Evaluator::compute(Input &input, Output *output)
