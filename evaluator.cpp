@@ -7,7 +7,6 @@ Evaluator::Evaluator(string fileName)
     _bestCurrentScore = 0;
     bestScorePath = fileName;
 }
-
 long long Evaluator::process(Input &input, Output *output)
 {
     Timer timer{"process"};
@@ -38,11 +37,11 @@ long long Evaluator::process(Input &input, Output *output)
         ans += ok;
         index++;
     }
-
     return ans;
 }
 void Evaluator::write(std::string fileName)
 {
+    cout << "bestCurrentScore: " << _bestCurrentScore << " bestGlobalScore: " << _bestGlobalScore << " fileName: " << fileName << endl;
     if (_bestCurrentScore > _bestGlobalScore)
     {
         ofstream fout(bestScorePath);

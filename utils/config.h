@@ -1,6 +1,6 @@
 #include "bits.h"
 
-const int nrOutputs = 1;
+const int nrOutputs = 3;
 const std::vector<std::string> inputFile = {"utils/inputs/a.txt",
                                             "utils/inputs/b.txt",
                                             "utils/inputs/c.txt",
