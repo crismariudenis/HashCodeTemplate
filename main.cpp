@@ -3,15 +3,6 @@
 #include "utils/config.h"
 vector<Output> outputs;
 vector<Evaluator> evaluators;
-void solve(Output *output, Evaluator &evaluator, Input &input)
-{
-    output->generateOutput();
-    evaluator.compute(input, output);
-}
-void solve2(Output *output, Evaluator &evaluator, Input &input)
-{
-    evaluator.compute(input, output);
-}
 
 int main()
 {
