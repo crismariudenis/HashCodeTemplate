@@ -1,7 +1,7 @@
 # Google HashCode 2022 Practice Round: One Pizza
 
 
-## Compile
+## Single Thread Compilation
 
 To compile on windows
 ```bash
@@ -12,6 +12,16 @@ To compile on linux
 g++ main.cpp input.cpp output.cpp evaluator.cpp -o main ; ./main
 ```
 
+## Multi Thread Compilation
+
+To compile on windows
+```bash
+g++ main2.cpp input.cpp output.cpp evaluator.cpp -o main ; .\main
+```
+To compile on linux
+```bash
+g++ main2.cpp input.cpp output.cpp evaluator.cpp -o main ; ./main
+```
 
 
 ## Results
