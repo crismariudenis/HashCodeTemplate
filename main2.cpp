@@ -1,16 +1,12 @@
 #include "evaluator.h"
 #include "utils/timer.h"
 #include "utils/config.h"
-
 vector<Output> outputs;
-
-void solve(Output *output, Evaluator &evaluator, Input &input)
-{
-    evaluator.compute(input, output);
-}
+vector<Evaluator> evaluators;
 
 int main()
 {
+    evaluators.reserve(5);
     for (int index = 0; index < 5; ++index)
     {
         ifstream fin(bestScoreFile[index]);
@@ -19,12 +15,14 @@ int main()
             ofstream fout(bestScoreFile[index]);
             fout << 0;
         }
+        // add all the evaluators
+        evaluators.emplace_back(Evaluator(bestScoreFile[index]));
     }
-    for (int test = 0; test < 5; ++test)
+    for (int test = 0; test < 4; ++test)
     {
         cout << '\n';
         std::cout << "Test " << char('A' + test) << " started!\n";
-        Timer timer;
+        Timer timer{"Total"};
 
         Input input;
 
@@ -32,20 +30,20 @@ int main()
         outputs.clear();
         for (int i = 0; i < nrOutputs; ++i)
             outputs.push_back(Output());
-            
+
+        std::vector<std::thread> threadPool;
         for (int i = 0; i < nrOutputs; ++i)
-        {
-            outputs[i].setInput(input);
-            outputs[i].setOutputFile(outputFile[test]);
+            threadPool.emplace_back(
+                [i, test, &input]()
+                {
+                    outputs[i].setInput(input);
+                    outputs[i].setOutputFile(outputFile[test]);
+                    outputs[i].generateOutput();
+                    evaluators[test].compute(input, &outputs[i]);
+                });
+        for (auto &a : threadPool)
+            a.join();
 
-            outputs[i].generateOutput();
-        }
-
-        Evaluator evaluator(bestScoreFile[test]);
-
-        for (int i = 0; i < nrOutputs; i++)
-            solve(&outputs[i], evaluator, input);
-
-        evaluator.write(outputFile[test]);
+        evaluators[test].write(outputFile[test]);
     }
 }
