@@ -15,8 +15,7 @@ void solve2(Output *output, Evaluator &evaluator, Input &input)
 
 int main()
 {
-    evaluators.reserve(nrOutputs);
-
+    evaluators.reserve(5);
     for (int index = 0; index < 5; ++index)
     {
         ifstream fin(bestScoreFile[index]);
@@ -25,8 +24,10 @@ int main()
             ofstream fout(bestScoreFile[index]);
             fout << 0;
         }
+            //add all the evaluators
+            evaluators.emplace_back(Evaluator(bestScoreFile[index]));
     }
-    for (int test = 3; test < 4; ++test)
+    for (int test = 0; test < 4; ++test)
     {
         cout << '\n';
         std::cout << "Test " << char('A' + test) << " started!\n";
@@ -39,33 +40,17 @@ int main()
         for (int i = 0; i < nrOutputs; ++i)
             outputs.push_back(Output());
 
-        evaluators.emplace_back(Evaluator(bestScoreFile[test]));
         std::vector<std::thread> threadPool;
-
-        for(int i=0;i<nrOutputs;++i)
+        for (int i = 0; i < nrOutputs; ++i)
         {
             outputs[i].setInput(input);
             outputs[i].setOutputFile(outputFile[test]);
-            // solve(&outputs[i],evaluators[i],input);
             outputs[i].generateOutput();
         }
-        Evaluator evaluator(bestScoreFile[test]);
 
         for(int i=0;i<nrOutputs;++i)
             evaluators[test].compute(input,&outputs[i]);
 
          evaluators[test].write(outputFile[test]);
-
-        // for (int i = 0; i < nrOutputs; ++i)
-        //     threadPool.emplace_back(
-        //         [i, test, &input]()
-        //         {
-        //             outputs[i].setInput(input);
-        //             outputs[i].setOutputFile(outputFile[test]);
-        //             solve(&outputs[i], evaluators[i], input);
-        //         });
-        // for (auto &a : threadPool)
-        //     a.join();
-
     }
 }
