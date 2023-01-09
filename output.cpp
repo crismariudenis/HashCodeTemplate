@@ -15,6 +15,7 @@ bool cmp(element a, element b)
         return a.likes < b.likes;
     return a.dislikes > b.dislikes;
 }
+Output::Output() {}
 Output::Output(Input &input, std::string fileName) : input(input), outputFile(fileName)
 {
     generateOutput();
@@ -42,7 +43,6 @@ void Output::generateOutput()
             banList[i] = 1;
             continue;
         }
-        // std::cout << likes[i] << ' ' << dislikes[i] << '\n';
         int r = dislikes[i];
         if (!r)
         {
@@ -61,11 +61,8 @@ void Output::generateOutput()
         if (precIngredients.size() == 0)
             break;
         cnt++;
-        // cout << precIngredients.size() << endl;
         sort(precIngredients.begin(), precIngredients.end(), cmp);
-        //     for(int i = 0;i < precIngredients.size(); ++i)
-        //     cout << setprecision(2) << fixed << precIngredients[i].raport << ' ';
-        // cout << '\n';
+
         if (precIngredients[precIngredients.size() - 1].raport == 0)
             break;
 
@@ -84,7 +81,6 @@ void Output::generateOutput()
             if (clients[i].dislikes[currIngr])
                 badClients.insert(i), nr[i] = civilianBanList[i] = 1;
         }
-        // cout << currIngr << ' ' << currentBest.raport << '\n';
         bool ok = 1;
         if (badClients.size() >= likes[currIngr])
             banList[currIngr] = 1;
