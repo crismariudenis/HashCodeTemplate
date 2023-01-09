@@ -15,10 +15,13 @@ bool cmp(element a, element b)
         return a.likes < b.likes;
     return a.dislikes > b.dislikes;
 }
+Output::Output(Input &input, std::string fileName) : input(input), outputFile(fileName)
+{
+    generateOutput();
+}
 
 void Output::generateOutput()
 {
-    Timer timer{"generateOutput"};
     std::vector<Client> clients = input.clients;
     std::vector<element> precIngredients;
     std::set<string> ingredients = input.ingredients;
@@ -123,18 +126,4 @@ void Output::write(std::string fileName)
     fout << answer.size() << ' ';
     for (auto i : answer)
         fout << i << ' ';
-}
-void Output::read(std::string fileName)
-{
-    /*
-        Code here
-    */
-}
-void Output::setInput(Input x)
-{
-    input = x;
-}
-void Output::setOutputFile(string outputFile)
-{
-    this->outputFile = outputFile;
 }
