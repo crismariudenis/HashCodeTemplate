@@ -14,7 +14,6 @@ int main()
             ofstream fout(bestScoreFile[index]);
             fout << 0;
         }
-        // add all the evaluators
         evaluators.emplace_back(Evaluator(bestScoreFile[index]));
     }
     for (int test = 0; test < 4; ++test)
