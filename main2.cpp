@@ -1,7 +1,6 @@
 #include "evaluator.h"
 #include "utils/timer.h"
 #include "utils/config.h"
-vector<Output> outputs;
 vector<Evaluator> evaluators;
 
 int main()
@@ -27,18 +26,17 @@ int main()
         Input input;
 
         input.read(inputFile[test]);
-        outputs.clear();
-        for (int i = 0; i < nrOutputs; ++i)
-            outputs.push_back(Output());
+
+        vector<Output> outputs;
+        outputs.resize(nrOutputs);
 
         std::vector<std::thread> threadPool;
         for (int i = 0; i < nrOutputs; ++i)
             threadPool.emplace_back(
-                [i, test, &input]()
+                [i, test, &input, &outputs]()
                 {
-                    outputs[i].setInput(input);
-                    outputs[i].setOutputFile(outputFile[test]);
-                    outputs[i].generateOutput();
+                    outputs[i] = Output(input, outputFile[test]);
+
                     evaluators[test].compute(input, &outputs[i]);
                 });
         for (auto &a : threadPool)
