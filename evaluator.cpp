@@ -9,7 +9,6 @@ Evaluator::Evaluator(string fileName)
 }
 long long Evaluator::process(Input &input, Output *output)
 {
-    Timer timer{"process"};
     long long ans = 0;
     int index = 0;
     for (auto client : input.clients)
