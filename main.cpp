@@ -14,10 +14,9 @@ int main()
             ofstream fout(bestScoreFile[index]);
             fout << 0;
         }
-        // add all the evaluators
         evaluators.emplace_back(Evaluator(bestScoreFile[index]));
     }
-    for (int test = 3; test < 4; ++test)
+    for (int test = 0; test < 4; ++test)
     {
         std::cout << "\nTest " << char('A' + test) << " started!\n";
         Timer timer{"Total"};

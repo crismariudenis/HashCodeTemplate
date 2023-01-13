@@ -9,6 +9,8 @@ public:
 
 public:
     Output(Input &input, std::string fileName);
+
+    
     Output();
     
     // called in the constructor
