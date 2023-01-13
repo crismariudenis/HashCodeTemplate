@@ -52,6 +52,7 @@ void Evaluator::compute(Input &input, Output *output)
 {
     long long score = process(input, output);
     assert(score >= 0);
+    // Todo: make this thread safe 
     if (score > _bestCurrentScore)
     {
         _bestCurrentScore = score;
