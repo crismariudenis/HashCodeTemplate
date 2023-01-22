@@ -1,5 +1,4 @@
 #include "utils/bits.h"
-#include "utils/config.h"
 
 using namespace std;
 struct Client
