@@ -3,17 +3,18 @@
 class Evaluator
 {
 public:
-    Evaluator(string fileName, ofstream &fout);
+    Evaluator(string fileName);
+    Evaluator(Evaluator &&) = default;
     void compute(Input &input, Output *output);
     void write(std::string fileName);
 
 private:
     long long process(Input &input, Output *output);
 
-private:
+public:
     Output *_bestOutput = nullptr;
-    long long _bestCurrentScore;
-    long long _bestGlobalScore;
-    string bestScorePath;
-    ofstream &fout;
+    long long _bestCurrentScore = 0;
+    long long _bestGlobalScore = 0;
+    string _bestScorePath;
+    std::unique_ptr<std::mutex> _mutex = std::make_unique<std::mutex>();
 };

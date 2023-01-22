@@ -26,13 +26,19 @@ int main()
         input.read(inputFile[test]);
 
         vector<Output> outputs;
-        outputs.reserve(nrOutputs);
+        outputs.resize(nrOutputs);
 
+        std::vector<std::thread> threadPool;
         for (int i = 0; i < nrOutputs; ++i)
-        {
-            outputs.emplace_back(Output(input, outputFile[test]));
-            evaluators[test].compute(input, &outputs[i]);
-        }
+            threadPool.emplace_back(
+                [i, test, &input, &outputs]()
+                {
+                    outputs[i] = Output(input, outputFile[test]);
+
+                    evaluators[test].compute(input, &outputs[i]);
+                });
+        for (auto &a : threadPool)
+            a.join();
 
         evaluators[test].write(outputFile[test]);
     }

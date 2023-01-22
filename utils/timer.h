@@ -1,11 +1,9 @@
 #include <chrono>
-#include <fstream>
-
 class Timer
 {
 
 public:
-    Timer(std::ofstream &fout, std::string name = "Time") : fout(fout), name(name) { startTime = std::chrono::high_resolution_clock::now(); }
+    Timer(std::string name = "Time") : name(name) { startTime = std::chrono::high_resolution_clock::now(); }
 
     ~Timer() { Stop(); }
 
@@ -18,15 +16,13 @@ public:
 
         auto duration = end - start;
 
-        double m=duration/60;
+        double m = duration / 60;
 
-        fout << name << ": " << duration << "s (" << m << "m)" << std::endl;
+        std::cout << name << ": " << duration << "s (" << m << "m)" << std::endl;
     }
 
 private:
     std::chrono::time_point<std::chrono::high_resolution_clock> startTime;
 
     std::string name = "Time";
-
-    std::ofstream &fout;
 };

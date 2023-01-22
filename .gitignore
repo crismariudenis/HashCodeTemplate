@@ -2,4 +2,5 @@
 *.bin
 .vscode/
 *.exe
+*
 tempCodeRunnerFile.cpp
