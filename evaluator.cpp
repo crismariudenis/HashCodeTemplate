@@ -1,11 +1,9 @@
 #include "evaluator.h"
 #include "utils/timer.h"
-Evaluator::Evaluator(string fileName)
+Evaluator::Evaluator(string fileName) : _bestScorePath(fileName)
 {
     ifstream fin(fileName);
     fin >> _bestGlobalScore;
-    _bestCurrentScore = 0;
-    bestScorePath = fileName;
 }
 long long Evaluator::process(Input &input, Output *output)
 {
@@ -42,17 +40,18 @@ void Evaluator::write(std::string fileName)
 {
     if (_bestCurrentScore > _bestGlobalScore)
     {
-        ofstream fout(bestScorePath);
+        ofstream fout(_bestScorePath);
         fout << _bestCurrentScore;
         _bestOutput->write(fileName);
-        std::cout << "New best output for test " << (char)(std::toupper(bestScorePath[bestScorePath.size() - 5])) << '!' << endl;
+        std::cout << "New best output for test " << (char)(std::toupper(_bestScorePath[_bestScorePath.size() - 5])) << '!' << endl;
     }
 }
 void Evaluator::compute(Input &input, Output *output)
 {
     long long score = process(input, output);
     assert(score >= 0);
-    // Todo: make this thread safe 
+
+    std::lock_guard<std::mutex> lock(*_mutex.get());
     if (score > _bestCurrentScore)
     {
         _bestCurrentScore = score;
