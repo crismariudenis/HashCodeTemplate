@@ -4,14 +4,14 @@ class Output
 {
 public:
     Input input;
-    Output(Input input, std::ofstream &fout);
+    std::string outputFile;
 
+public:
+    Output(Input &input, std::string fileName);
+    Output();
+
+    // called in the constructor
     void generateOutput();
 
     void write(std::string fileName);
-
-    // read the previous output from the file
-    void read(std::string fileName);
-
-    std::ofstream &fout;
 };

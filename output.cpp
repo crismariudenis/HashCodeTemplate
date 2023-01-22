@@ -5,7 +5,6 @@ Output::Output(Input &input, std::string fileName) : input(input), outputFile(fi
 {
     generateOutput();
 }
-
 void Output::generateOutput()
 {
     /*
