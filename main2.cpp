@@ -16,7 +16,7 @@ int main()
         }
         evaluators.emplace_back(Evaluator(bestScoreFile[index]));
     }
-    for (int test = 0; test < 4; ++test)
+    for (int test = 0; test < 5; ++test)
     {
         std::cout << "\nTest " << char('A' + test) << " started!\n";
         Timer timer{"Total"};
