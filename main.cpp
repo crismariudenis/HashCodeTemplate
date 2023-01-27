@@ -2,7 +2,6 @@
 #include "utils/timer.h"
 #include "utils/config.h"
 vector<Evaluator> evaluators;
-
 int main()
 {
     evaluators.reserve(5);
