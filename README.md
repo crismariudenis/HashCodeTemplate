@@ -20,8 +20,13 @@ make multi
 ```
 ## Running
 To run the program, use the following command:
+### Single Thread
 ```bash
 make run
+```
+### Multi Thread
+```bash
+make run2
 ```
 
 ## Customizing the solution
