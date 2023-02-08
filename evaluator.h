@@ -1,9 +1,14 @@
+#ifndef H_EVALUATOR
+#define H_EVALUATOR
+
+
 #include "output.h"
 
 class Evaluator
 {
 public:
     Evaluator(string fileName);
+    Evaluator(const Evaluator & evaluator);
     Evaluator(Evaluator &&) = default;
     void compute(Input &input, Output *output);
     void write(std::string fileName);
@@ -18,3 +23,6 @@ public:
     string _bestScorePath;
     std::unique_ptr<std::mutex> _mutex = std::make_unique<std::mutex>();
 };
+
+
+#endif //H_EVALUATOR

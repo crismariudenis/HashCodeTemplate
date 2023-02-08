@@ -1,6 +1,7 @@
 #include "output.h"
 #include "utils/timer.h"
 Output::Output() {}
+Output::Output(const Output & output) {};
 Output::Output(Input &input, std::string fileName) : input(input), outputFile(fileName)
 {
     generateOutput();

@@ -36,3 +36,5 @@ void Evaluator::compute(Input &input, Output *output)
         _bestOutput = output;
     }
 }
+
+Evaluator::Evaluator(const Evaluator & evaluator) {};
