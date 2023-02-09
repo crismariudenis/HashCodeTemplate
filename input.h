@@ -5,6 +5,9 @@
 
 using namespace std;
 
+namespace hcd{
+
+
 class Input
 {
 public:
@@ -13,5 +16,6 @@ public:
     Input(const Input & input);
 };
 
+}
 
 #endif // H_INPUT

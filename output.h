@@ -1,26 +1,27 @@
 #ifndef H_OUTPUT
 #define H_OUTPUT
 
-
 #include "input.h"
 
-
-class Output
+namespace hcd
 {
-public:
-    Input input;
-    std::string outputFile;
 
-public:
-    Output(Input &input, std::string fileName);
-    Output();
-    Output(const Output & output);
+    class Output
+    {
+    public:
+        Input input;
+        std::string outputFile;
 
-    // called in the constructor
-    void generateOutput();
+    public:
+        Output(Input &input, std::string fileName);
+        Output();
+        Output(const Output &output);
 
-    void write(std::string fileName);
-};
+        // called in the constructor
+        void generateOutput();
 
+        void write(std::string fileName);
+    };
 
+}
 #endif // H_OUTPUT
