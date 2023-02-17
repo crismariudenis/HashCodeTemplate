@@ -1,8 +1,8 @@
-single: main.cpp input.cpp output.cpp evaluator.cpp
-	g++ main.cpp input.cpp output.cpp evaluator.cpp -o main -O3 
+single: src/main.cpp  src/input.cpp  src/output.cpp  src/evaluator.cpp
+	g++ src/main.cpp src/input.cpp src/output.cpp src/evaluator.cpp -o main -O3 
 
-multi: main2.cpp input.cpp output.cpp evaluator.cpp
-	g++ main2.cpp input.cpp output.cpp evaluator.cpp -o main2 -O3
+multi: src/main2.cpp src/input.cpp src/output.cpp src/evaluator.cpp
+	g++ src/main2.cpp src/input.cpp src/output.cpp src/evaluator.cpp -o main2 -O3
 
 run:
 	./main.exe
@@ -12,3 +12,9 @@ run2:
 
 clean:
 	del main.exe main2.exe
+
+reset:
+	for %%f in (a b c d e f) do echo 0 > utils/bestScores/%%f.txt
+
+
+
