@@ -14,7 +14,7 @@ namespace hcd
         /*
             Code here
         */
-        return 0b0000001;
+        return 0b0000000;
     }
     void Evaluator::write(std::string fileName)
     {
