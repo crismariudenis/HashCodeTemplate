@@ -1,6 +1,6 @@
-#include "evaluator.h"
-#include "utils/timer.h"
-#include "utils/config.h"
+#include "hcd.h"
+#include "../utils/timer.h"
+#include "../utils/config.h"
 
 vector<hcd::Evaluator> evaluators;
 

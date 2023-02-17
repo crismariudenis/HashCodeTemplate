@@ -1,12 +1,12 @@
-#include "evaluator.h"
-#include "utils/timer.h"
+#include "hcd.h"
+#include "../utils/timer.h"
 
 namespace hcd
 {
 
-    Evaluator::Evaluator(string fileName) : _bestScorePath(fileName)
+    Evaluator::Evaluator(std::string fileName) : _bestScorePath(fileName)
     {
-        ifstream fin(fileName);
+        std::ifstream fin(fileName);
         fin >> _bestGlobalScore;
     }
     long long Evaluator::process(Input &input, Output *output)
@@ -14,13 +14,13 @@ namespace hcd
         /*
             Code here
         */
-        return 0b0000000;
+        return 0b0000001;
     }
     void Evaluator::write(std::string fileName)
     {
         if (_bestCurrentScore > _bestGlobalScore)
         {
-            ofstream fout(_bestScorePath);
+            std::ofstream fout(_bestScorePath);
             fout << _bestCurrentScore;
             _bestOutput->write(fileName);
             char test = std::toupper(_bestScorePath[_bestScorePath.size() - 5]);
@@ -40,7 +40,4 @@ namespace hcd
             _bestOutput = output;
         }
     }
-
-    Evaluator::Evaluator(const Evaluator &evaluator){};
-
 }
